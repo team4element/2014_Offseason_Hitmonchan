@@ -338,12 +338,21 @@ void PhoenixRobot::handle()
 //	}
 }
 
-void PhoenixRobot::driveRobot(double throttle, double turn){
+void PhoenixRobot::driveRobot(float throttle, float turn, bool turnButton){
+	
+	float sensitivity;
+	if(quickTurn){
+		sensitivity = 1;
+	} else
+		sensitivity = 0.4;
 	
 	
-	double rightPower = throttle - turn;
-	double leftPower = throttle + turn;
+	float temp_rightPower = throttle - turn;
+	float temp_leftPower = throttle + turn;
 	
+	//Maintain a high differential at high speeds.
+	float rightPower = temp_rightPower + skim(temp_leftPower);
+	float leftPower = temp_leftPower + skim(temp_rightPower);
 	
 	setRightPower(rightPower);
 	setLeftPower(leftPower);
@@ -353,6 +362,16 @@ void PhoenixRobot::driveRobot(double throttle, double turn){
 	 *  left = -.5
 	 * 
 	 */
+}
+
+double PhoenixRobot::skim(float input)
+{
+	double skimGain = .01;
+	if(input > 1.0)
+		return -((v-1.0) * skimGain);
+	else if (input < -1.0)
+		return -((v+1.0) * skimGain);
+	return 0.0;
 }
 
 void PhoenixRobot::setRightPower(double doubleSpeed)

@@ -14,9 +14,9 @@ class OperatorController : public GenericController
 private:
 	OperatorController();
 	PhoenixControlBoard* m_CB;
-	bool m_PreviousFire;
-	bool m_PreviousFullBack;
-	bool m_PreviousHalfBack;
+//	bool m_PreviousFire;
+//	bool m_PreviousFullBack;
+//	bool m_PreviousHalfBack;
 public:
 	OperatorController(PhoenixControlBoard* controlboard);
 	void handle(PhoenixRobot* bot);
