@@ -1,13 +1,13 @@
 #ifndef __Phoenix_BASE_H__
 #define __Phoenix_BASE_H__
 
-#include <hostLib.h>
+//#include <hostLib.h>
 #include <WPILib.h>
 //#include "PhoenixControlBoard.h"
 #include "Controllers/OperatorController.h"
 //#include "Controllers/AutoModeController.h"
 //#include "Autonomous/AutoModes.h"
-#include "PhoenixLib/PhoenixLib.h"
+//#include "PhoenixLib/PhoenixLib.h"
 #include "PhoenixConstants.h"
 
 class PhoenixBase : public IterativeRobot

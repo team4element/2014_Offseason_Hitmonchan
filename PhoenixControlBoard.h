@@ -20,25 +20,25 @@
 class PhoenixControlBoard
 {
 private:	
-	Joystick* m_DriveStick;
-	Joystick* m_DriveWheel;
-	Joystick* m_OperatorPanel;
+	Joystick* m_DriveController;
+	Joystick* m_OperatorController;
+	//Joystick* m_DriveWheel;
+	//Joystick* m_OperatorPanel;
 	
-	bool m_PreviousAuto;
+	//bool m_PreviousAuto;
 public:
+	//----Constructor----
 	PhoenixControlBoard();
 	
-	bool GetQuickTurn();
-	bool GetAutoSelectButton();
+	float GetDriveThrottle();
+	float GetDriveTurn();
 	
-	float GetDriveAxis(unsigned int axis);
 	
-	float GetDriveStickY();
-	float GetSteeringX();
-	
+	//----Hardware Getters----
 	bool GetDriveButton(int button);
-	bool GetSteeringButton(int button);
 	bool GetOperatorButton(int button);
+	float GetDriveAxis(int axis);
+	float GetOperatorAxis(int axis);
 };
 
 #endif

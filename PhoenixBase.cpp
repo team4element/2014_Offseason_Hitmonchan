@@ -20,7 +20,7 @@ void PhoenixBase::RobotInit(){
 }
 
 void PhoenixBase::DisabledInit(){
-	m_Constants->RestoreData();
+	//m_Constants->RestoreData();
 }
 
 void PhoenixBase::AutonomousInit()
@@ -76,7 +76,7 @@ void PhoenixBase::DisabledPeriodic()
 //		}
 //	}
 	
-	m_Bot->PrintToDS();
+	//m_Bot->PrintToDS();
 }
 void PhoenixBase::AutonomousPeriodic()
 {
@@ -85,13 +85,13 @@ void PhoenixBase::AutonomousPeriodic()
 }
 void PhoenixBase::TeleopPeriodic()
 {
-	if(m_ControlBoard->GetAutoSelectButton())
-	{
-		m_Bot->Reset();
-		m_Constants->RestoreData();
-	}
-	
-	m_Bot->PrintToDS();
+//	if(m_ControlBoard->GetAutoSelectButton())
+//	{
+//		m_Bot->Reset();
+//		m_Constants->RestoreData();
+//	}
+//	
+//	m_Bot->PrintToDS();
 	m_Bot->handle();
 }
 

@@ -11,53 +11,62 @@ PhoenixRobot::PhoenixRobot()
 		
 	m_Controller = NULL;
 	// Set up drive motors
-	m_RightDrive = new Talon(PWM_RIGHT_DRIVE);
-	m_LeftDrive = new Talon(PWM_LEFT_DRIVE);
+	m_RightDriveA_ = new Talon(PWM_RIGHT_DRIVEA_);
+	m_RightDriveB_ = new Talon(PWM_RIGHT_DRIVEB_);
+	m_RightDriveC_ = new Talon(PWM_RIGHT_DRIVEC_);
 	
-	m_Compressor = new Relay(RELAY_COMPRESSOR);
-	m_PressureSwitch = new DigitalInput(DIGITAL_PRESSURE_SWITCH);
+	m_LeftDriveA_ = new Talon(PWM_LEFT_DRIVEA_);
+	m_LeftDriveB_ = new Talon(PWM_LEFT_DRIVEB_);
+	m_LeftDriveC_ = new Talon(PWM_LEFT_DRIVEC_);
+	
+	
+	//m_RightDrive = new Talon(PWM_RIGHT_DRIVE);
+	//m_LeftDrive = new Talon(PWM_LEFT_DRIVE);
+	
+	//m_Compressor = new Relay(RELAY_COMPRESSOR);
+	//m_PressureSwitch = new DigitalInput(DIGITAL_PRESSURE_SWITCH);
 	
 //	m_FrontIntake = new Intake(PWM_FRONT_INTAKE_A, PWM_FRONT_INTAKE_B, SOLENOID_FRONT_INTAKE_A, SOLENOID_FRONT_INTAKE_B);
 //	m_RearIntake = new Intake(PWM_REAR_INTAKE_A, PWM_REAR_INTAKE_B, SOLENOID_REAR_INTAKE_A, SOLENOID_REAR_INTAKE_B);
 //	m_Winch = new Winch(PWM_WINCH_A, PWM_WINCH_B, SOLENOID_WINCH_LOCK, SOLENOID_WINCH_FIRE, ANALOG_WINCH_POT);
 	
-	m_Gyro = new PhoenixLib::PhoenixGyro(ANALOG_GYRO);
-	m_Gyro->SetSensitivity(GYRO_SENSITIVITY);
-	m_Gyro->Reset();
+	//m_Gyro = new PhoenixLib::PhoenixGyro(ANALOG_GYRO);
+	//m_Gyro->SetSensitivity(GYRO_SENSITIVITY);
+	//m_Gyro->Reset();
 	
-	m_DriveEncoder = new Encoder(DIGITAL_ENCODER_A, DIGITAL_ENCODER_B, true, Encoder::k1X);
-	m_DriveEncoder->SetDistancePerPulse(0.03490658503); // 4*pi/360
-	m_DriveEncoder->Start();
+	//m_DriveEncoder = new Encoder(DIGITAL_ENCODER_A, DIGITAL_ENCODER_B, true, Encoder::k1X);
+	//m_DriveEncoder->SetDistancePerPulse(0.03490658503); // 4*pi/360
+	//m_DriveEncoder->Start();
 	
-	m_FrontIR = new AnalogChannel(ANALOG_FRONT_IR);
-	m_RearIR = new AnalogChannel(ANALOG_REAR_IR);
+	//m_FrontIR = new AnalogChannel(ANALOG_FRONT_IR);
+	//m_RearIR = new AnalogChannel(ANALOG_REAR_IR);
 	
-	m_KinectLeftArm = new KinectStick(1);
-	m_KinectRightArm = new KinectStick(2);
+	//m_KinectLeftArm = new KinectStick(1);
+	//m_KinectRightArm = new KinectStick(2);
 	
-	m_LeftDriveValue = 0;
-	m_RightDriveValue = 0;
+	//m_LeftDriveValue = 0;
+	//m_RightDriveValue = 0;
 	
-	m_FrontIntakeSpeed = 0;
-	m_FrontIntakeState = false;
-	m_RearIntakeSpeed = 0;
-	m_RearIntakeState = false;	
-	
-	m_BallAdjustTime = 0;
-	m_FiringState = IDLE;
-	m_SettlingState = SETTLE_IDLE;
-	m_BallSettledTime = 0;
-	
-	m_PreviousGyroError = 0;
-	m_PreviousDriveError = 0;
+//	m_FrontIntakeSpeed = 0;
+//	m_FrontIntakeState = false;
+//	m_RearIntakeSpeed = 0;
+//	m_RearIntakeState = false;	
+//	
+//	m_BallAdjustTime = 0;
+//	m_FiringState = IDLE;
+//	m_SettlingState = SETTLE_IDLE;
+//	m_BallSettledTime = 0;
+//	
+//	m_PreviousGyroError = 0;
+//	m_PreviousDriveError = 0;
 }
 
 void PhoenixRobot::Reset()
 {
-	m_Gyro->Reset();
-	m_DriveEncoder->Reset();
-	m_PreviousGyroError = 0;
-	m_PreviousDriveError = 0;
+//	m_Gyro->Reset();
+//	m_DriveEncoder->Reset();
+//	m_PreviousGyroError = 0;
+//	m_PreviousDriveError = 0;
 //	if(m_Winch->GetState() == Winch::DESPRINGING)
 //	{
 //		m_FiringState = IDLE;
@@ -74,56 +83,56 @@ void PhoenixRobot::Reset()
 //	m_SettlingState = SETTLE_IDLE;
 }
 
-double PhoenixRobot::GetFrontIR()
-{
-	return m_FrontIR->GetVoltage();
-}
-
-double PhoenixRobot::GetRearIR()
-{
-	return m_RearIR->GetVoltage();
-}
-
-void PhoenixRobot::GyroHandleCalibration()
-{
-	m_Gyro->HandleCalibration();
-}
-
-void PhoenixRobot::GyroFinalizeCalibration()
-{
-	m_Gyro->FinalizeCalibration();
-}
-
-void PhoenixRobot::SetController(GenericController* controller)
-{
-	m_Controller = controller;
-}
-
-void PhoenixRobot::PrintToDS()
-{
-	if(m_DSUpdateCount % 10 == 0)
-	{
-		m_DSUpdateCount = 0;
-//		char* kinectArms = ".0. (No arms up)";
-//		if(KinectLeftRight() < -0.5)
-//		{
-//			kinectArms = "\\0. (Left arm up)";
-//		}
-//		else if(KinectLeftRight() > 0.5)
-//		{
-//			kinectArms = ".0/ (Right arm up)";
-//		}
-
-		PhoenixLib::PrintToLCD("HI");
-		//		PhoenixLib::PrintToLCD("G:%f\n",
-//						   m_Gyro->GetAngle()
-//						  );
-	}
-	m_DSUpdateCount++;
-}
-
-/// Used to handle the recurring logic funtions inside the robot.
-/// Please call this once per update cycle.
+//double PhoenixRobot::GetFrontIR()
+//{
+//	return m_FrontIR->GetVoltage();
+//}
+//
+//double PhoenixRobot::GetRearIR()
+//{
+//	return m_RearIR->GetVoltage();
+//}
+//
+//void PhoenixRobot::GyroHandleCalibration()
+//{
+//	m_Gyro->HandleCalibration();
+//}
+//
+//void PhoenixRobot::GyroFinalizeCalibration()
+//{
+//	m_Gyro->FinalizeCalibration();
+//}
+//
+//void PhoenixRobot::SetController(GenericController* controller)
+//{
+//	m_Controller = controller;
+//}
+//
+//void PhoenixRobot::PrintToDS()
+//{
+//	if(m_DSUpdateCount % 10 == 0)
+//	{
+//		m_DSUpdateCount = 0;
+////		char* kinectArms = ".0. (No arms up)";
+////		if(KinectLeftRight() < -0.5)
+////		{
+////			kinectArms = "\\0. (Left arm up)";
+////		}
+////		else if(KinectLeftRight() > 0.5)
+////		{
+////			kinectArms = ".0/ (Right arm up)";
+////		}
+//
+//		PhoenixLib::PrintToLCD("HI");
+//		//		PhoenixLib::PrintToLCD("G:%f\n",
+////						   m_Gyro->GetAngle()
+////						  );
+//	}
+//	m_DSUpdateCount++;
+//}
+//
+///// Used to handle the recurring logic funtions inside the robot.
+///// Please call this once per update cycle.
 void PhoenixRobot::handle()
 {	
 	if(m_Controller == NULL)
@@ -135,8 +144,8 @@ void PhoenixRobot::handle()
 	m_Controller->handle(this);
 	
 	// Default drive
-	float tmpLeftMotor = m_LeftDriveValue;
-	float tmpRightMotor = m_RightDriveValue;
+//	float tmpLeftMotor = m_LeftDriveValue;
+//	float tmpRightMotor = m_RightDriveValue;
 	
 //	switch(m_FiringState)
 //	{
@@ -315,164 +324,214 @@ void PhoenixRobot::handle()
 //	m_RearIntake->SetState(m_RearIntakeState);
 //	
 //	m_Winch->handle();
-	SetLeftMotors(tmpLeftMotor);
-	SetRightMotors(tmpRightMotor);
+//	SetLeftMotors(tmpLeftMotor);
+//	SetRightMotors(tmpRightMotor);
 	//printf("%f, %f\r\n",  m_Encoder->GetDistance(), m_Gyro->GetAngle());
 	//printf("%f\n", m_Gyro->GetAngle());
 	
-	if(m_PressureSwitch->Get())
+//	if(m_PressureSwitch->Get())
+//	{
+//		m_Compressor->Set(Relay::kOff);
+//	} else
+//	{
+//		m_Compressor->Set(Relay::kForward);
+//	}
+}
+
+void PhoenixRobot::driveRobot(double throttle, double turn){
+	
+	
+	double rightPower = throttle - turn;
+	double leftPower = throttle + turn;
+	
+	
+	setRightPower(rightPower);
+	setLeftPower(leftPower);
+	
+	/* 0% throttle, 50% turn
+	 *  right = .5; 
+	 *  left = -.5
+	 * 
+	 */
+}
+
+void PhoenixRobot::setRightPower(double doubleSpeed)
+{
+	//doubleSpeed = joy1->GetRawAxis(1);
+	//data validation; -1<x<1
+	if (doubleSpeed < -1)
 	{
-		m_Compressor->Set(Relay::kOff);
-	} else
-	{
-		m_Compressor->Set(Relay::kForward);
+		doubleSpeed = -1;
 	}
+	else if (doubleSpeed > 1)
+	{
+		doubleSpeed = 1;
+	}
+	//How Do You Set Talons?
+
+	//joy1->GetRawButton(2);
 }
 
-void PhoenixRobot::AutoSettle()
+void PhoenixRobot::setLeftPower(double doubleSpeed)
 {
-	m_FiringState = AUTO_SETTLING;
+	//doubleSpeed = joy1->GetRawAxis(1);
+	//data validation; -1<x<1
+	if (doubleSpeed < -1)
+	{
+		doubleSpeed = -1;
+	}
+	else if (doubleSpeed > 1)
+	{
+		doubleSpeed = 1;
+	}
+	//How Do You Set Talons?
+	//joy1->GetRawButton(2);
 }
 
-PhoenixRobot::e_SettlingState PhoenixRobot::GetSettledState()
-{
-	return m_SettlingState;
-}
-
-double PhoenixRobot::GetDriveDistance()
-{
-	return m_DriveEncoder->GetDistance();
-}
-
-bool PhoenixRobot::DriveDistanceWithHeading(double heading, double distance)
-{
-	double PID_P = CONSTANT("DRIVE_P");
-	double PID_D = CONSTANT("DRIVE_D");
-	double error = distance - m_DriveEncoder->GetDistance();
-	double dError = error - m_PreviousDriveError;
-	double output = PID_P*error + PID_D*dError;
-	
-	bool headingResult = DriveWithHeading(heading, PhoenixLib::LimitMix(output, CONSTANT("DRIVE_MAX_SPEED")));
-	
-	m_PreviousDriveError = error;
-	
-	return (fabs(error) < 4 && PhoenixLib::UnitsPerSecond(fabs(dError)) < 1 && headingResult);
-}
-
-bool PhoenixRobot::DriveWithHeading(double heading, double speed)
-{
-	speed *= -1;
-	double PID_P = CONSTANT("TURN_P");
-	double PID_D = CONSTANT("TURN_D");
-	double error = heading - m_Gyro->GetAngle();
-	double dError = error - m_PreviousGyroError;
-	double output = PID_P*error + PID_D*dError;
-				
-	DriveLeftRight(speed-output, speed+output);
-	
-	m_PreviousGyroError = error;
-	
-	return (fabs(error) < 1 && PhoenixLib::UnitsPerSecond(fabs(dError)) < 0.5);
-}
-
-//void PhoenixRobot::SetFrontIntakeState(bool state)
+//void PhoenixRobot::AutoSettle()
 //{
-//	m_FrontIntakeState = state;
+//	m_FiringState = AUTO_SETTLING;
 //}
 //
-//void PhoenixRobot::SetRearIntakeState(bool state)
+//PhoenixRobot::e_SettlingState PhoenixRobot::GetSettledState()
 //{
-//	m_RearIntakeState = state;
+//	return m_SettlingState;
 //}
 //
-//void PhoenixRobot::FrontIntake(double speed, bool state)
+//double PhoenixRobot::GetDriveDistance()
 //{
-//	m_FrontIntakeSpeed = -speed;
-//	m_FrontIntakeState = state;
+//	return m_DriveEncoder->GetDistance();
 //}
 //
-//void PhoenixRobot::RearIntake(double speed, bool state)
+//bool PhoenixRobot::DriveDistanceWithHeading(double heading, double distance)
 //{
-//	m_RearIntakeSpeed = speed;
-//	m_RearIntakeState = state;
-//}
-
-//void PhoenixRobot::SetWinchState(Winch::e_WinchState state)
-//{
-//	m_Winch->SetState(state);
-//}
-
-//void PhoenixRobot::AskForFire()
-//{
-//	if(ReadyToFire())
-//	{
-//		m_BallAdjustTime = Timer::GetFPGATimestamp();
-//		m_FiringState = ADJUSTING_BALL;
-//	}
-//}
-
-//void PhoenixRobot::ForceFire()
-//{
-//	if(m_FiringState == IDLE || m_FiringState == WAITING_FOR_RELOAD)
-//	{
-//		m_BallAdjustTime = Timer::GetFPGATimestamp();
-//		m_FiringState = ADJUSTING_BALL;
-//	}
-//}
-
-//bool PhoenixRobot::ReadyToFire()
-//{
-//	return m_FiringState == IDLE && m_Winch->GetState() == Winch::READY_TO_FIRE;
+//	double PID_P = CONSTANT("DRIVE_P");
+//	double PID_D = CONSTANT("DRIVE_D");
+//	double error = distance - m_DriveEncoder->GetDistance();
+//	double dError = error - m_PreviousDriveError;
+//	double output = PID_P*error + PID_D*dError;
+//	
+//	bool headingResult = DriveWithHeading(heading, PhoenixLib::LimitMix(output, CONSTANT("DRIVE_MAX_SPEED")));
+//	
+//	m_PreviousDriveError = error;
+//	
+//	return (fabs(error) < 4 && PhoenixLib::UnitsPerSecond(fabs(dError)) < 1 && headingResult);
 //}
 //
-//bool PhoenixRobot::Reloading()
+//bool PhoenixRobot::DriveWithHeading(double heading, double speed)
 //{
-//	return m_Winch->GetState() == Winch::RELOADING;
-//}
-
-//bool PhoenixRobot::ChangeWinchSetpoint(double setpoint)
-//{
-//	if(m_FiringState == IDLE || m_FiringState == WAITING_FOR_RELOAD)
-//	{
-//		m_Winch->SetSetpoint(setpoint);
-//		return true;
-//	}
-//	return false;
+//	speed *= -1;
+//	double PID_P = CONSTANT("TURN_P");
+//	double PID_D = CONSTANT("TURN_D");
+//	double error = heading - m_Gyro->GetAngle();
+//	double dError = error - m_PreviousGyroError;
+//	double output = PID_P*error + PID_D*dError;
+//				
+//	DriveLeftRight(speed-output, speed+output);
+//	
+//	m_PreviousGyroError = error;
+//	
+//	return (fabs(error) < 1 && PhoenixLib::UnitsPerSecond(fabs(dError)) < 0.5);
 //}
 //
-//void PhoenixRobot::WinchHoldVoltage(double setpoint)
+////void PhoenixRobot::SetFrontIntakeState(bool state)
+////{
+////	m_FrontIntakeState = state;
+////}
+////
+////void PhoenixRobot::SetRearIntakeState(bool state)
+////{
+////	m_RearIntakeState = state;
+////}
+////
+////void PhoenixRobot::FrontIntake(double speed, bool state)
+////{
+////	m_FrontIntakeSpeed = -speed;
+////	m_FrontIntakeState = state;
+////}
+////
+////void PhoenixRobot::RearIntake(double speed, bool state)
+////{
+////	m_RearIntakeSpeed = speed;
+////	m_RearIntakeState = state;
+////}
+//
+////void PhoenixRobot::SetWinchState(Winch::e_WinchState state)
+////{
+////	m_Winch->SetState(state);
+////}
+//
+////void PhoenixRobot::AskForFire()
+////{
+////	if(ReadyToFire())
+////	{
+////		m_BallAdjustTime = Timer::GetFPGATimestamp();
+////		m_FiringState = ADJUSTING_BALL;
+////	}
+////}
+//
+////void PhoenixRobot::ForceFire()
+////{
+////	if(m_FiringState == IDLE || m_FiringState == WAITING_FOR_RELOAD)
+////	{
+////		m_BallAdjustTime = Timer::GetFPGATimestamp();
+////		m_FiringState = ADJUSTING_BALL;
+////	}
+////}
+//
+////bool PhoenixRobot::ReadyToFire()
+////{
+////	return m_FiringState == IDLE && m_Winch->GetState() == Winch::READY_TO_FIRE;
+////}
+////
+////bool PhoenixRobot::Reloading()
+////{
+////	return m_Winch->GetState() == Winch::RELOADING;
+////}
+//
+////bool PhoenixRobot::ChangeWinchSetpoint(double setpoint)
+////{
+////	if(m_FiringState == IDLE || m_FiringState == WAITING_FOR_RELOAD)
+////	{
+////		m_Winch->SetSetpoint(setpoint);
+////		return true;
+////	}
+////	return false;
+////}
+////
+////void PhoenixRobot::WinchHoldVoltage(double setpoint)
+////{
+////	if(m_FiringState == IDLE)
+////	{
+////		if(fabs(m_Winch->GetSetpoint() - setpoint) > 0.01)
+////		{
+////			m_Winch->HoldVoltage(setpoint);
+////		}
+////	}
+////}
+//
+////void PhoenixRobot::WinchDespring()
+////{
+////	if(m_FiringState == IDLE || m_FiringState == WAITING_FOR_RELOAD)
+////	{
+////		m_Winch->Despring();
+////	}
+////}
+//
+//double PhoenixRobot::KinectLeftRight()
 //{
-//	if(m_FiringState == IDLE)
-//	{
-//		if(fabs(m_Winch->GetSetpoint() - setpoint) > 0.01)
-//		{
-//			m_Winch->HoldVoltage(setpoint);
-//		}
-//	}
+//	return m_KinectLeftArm->GetY() - m_KinectRightArm->GetY();
 //}
-
-//void PhoenixRobot::WinchDespring()
+//
+///// Allows skid steer robot to be driven using tank drive style inputs
+///// @param leftDriveValue
+///// @param rightDriveValue
+/////
+//void PhoenixRobot::DriveLeftRight(float leftDriveValue, float rightDriveValue)
 //{
-//	if(m_FiringState == IDLE || m_FiringState == WAITING_FOR_RELOAD)
-//	{
-//		m_Winch->Despring();
-//	}
+//	m_LeftDriveValue = leftDriveValue;
+//	m_RightDriveValue = rightDriveValue;
 //}
-
-double PhoenixRobot::KinectLeftRight()
-{
-	return m_KinectLeftArm->GetY() - m_KinectRightArm->GetY();
-}
-
-/// Allows skid steer robot to be driven using tank drive style inputs
-/// @param leftDriveValue
-/// @param rightDriveValue
-///
-void PhoenixRobot::DriveLeftRight(float leftDriveValue, float rightDriveValue)
-{
-	m_LeftDriveValue = leftDriveValue;
-	m_RightDriveValue = rightDriveValue;
-}
 
 void PhoenixRobot::DriveSpeedTurn(float speed, float turn, bool quickTurn)
 {
@@ -541,7 +600,7 @@ void PhoenixRobot::SetLeftMotors(float val)
 	if (val < -1.0)
 		val = -1.0;
 
-	m_LeftDrive->SetSpeed(-val);
+	//m_LeftDrive->SetSpeed(-val);
 }
 
 /// sets the left side motors
@@ -552,5 +611,5 @@ void PhoenixRobot::SetRightMotors(float val)
 	if (val < -1.0)
 		val = -1.0;
 
-	m_RightDrive->SetSpeed(val);
+	//m_RightDrive->SetSpeed(val);
 }

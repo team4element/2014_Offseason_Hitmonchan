@@ -12,14 +12,16 @@
 
 #define GYRO_SENSITIVITY				0.007
 
+/*
 #define EXHAUST_REAR					4
 #define EXHAUST_FRONT					1
 #define INTAKE_FRONT					3
 #define INTAKE_REAR						2
 #define FAR								5
+*/
 
 // PWM ports
-#define PWM_LEFT_DRIVE					1
+/*#define PWM_LEFT_DRIVE					1
 #define PWM_FRONT_INTAKE_A				2
 #define PWM_FRONT_INTAKE_B				3
 #define PWM_REAR_INTAKE_A				4
@@ -27,7 +29,16 @@
 #define PWM_WINCH_A						6
 #define PWM_WINCH_B						7
 #define PWM_RIGHT_DRIVE					8
+*/
+#define PWM_RIGHT_DRIVEA_				1
+#define PWM_RIGHT_DRIVEB_				1
+#define PWM_RIGHT_DRIVEC_				1
+#define PWM_LEFT_DRIVEA_				1
+#define PWM_LEFT_DRIVEB_				1
+#define PWM_LEFT_DRIVEC_				1
 
+
+/*
 // Solenoid outputs
 #define SOLENOID_FRONT_INTAKE_A			6
 #define SOLENOID_FRONT_INTAKE_B			3
@@ -49,5 +60,5 @@
 #define DIGITAL_PRESSURE_SWITCH			1
 #define DIGITAL_ENCODER_A				2
 #define DIGITAL_ENCODER_B				3
-
+*/
 #endif
