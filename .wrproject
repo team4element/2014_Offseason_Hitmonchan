@@ -244,14 +244,9 @@
         </mapAttribute>
     </attributes>
     <buildtargets>
-        <buildtarget buildtool="Linker" name="2014_Offseason_Hitmonchan" passed="false" targetname="2014_Offseason_Hitmonchan">
+        <buildtarget buildtool="Linker" name="2014osp" passed="false" targetname="2014osp">
             <contents>
-                <buildtargetreference name="/2014_Offseason_Hitmonchan/2014_Offseason_Hitmonchan_partialImage"/>
-            </contents>
-        </buildtarget>
-        <buildtarget buildtool="Partial Image Linker" name="2014_Offseason_Hitmonchan_partialImage" passed="true" targetname="2014_Offseason_Hitmonchan_partialImage">
-            <contents>
-                <folder name="/2014_Offseason_Hitmonchan" recursive="true"/>
+                <folder name="/2014osp" recursive="true"/>
             </contents>
         </buildtarget>
     </buildtargets>

@@ -38,7 +38,7 @@ private:
 	
 	GenericController* m_Controller;
 	
-	// Drive Motors
+	//Motors
 	//Talon* m_RightDrive;
 	//Talon* m_LeftDrive;
 	
@@ -50,7 +50,18 @@ private:
 	Talon* m_LeftDriveB_;
 	Talon* m_LeftDriveC_;
 	
-	//Relay* m_Compressor;
+	
+	
+	//Pneumatics
+	Relay* m_Compressor; //TODO: find compressor port.
+	
+	//Sensors
+	PhoenixLib::PhoenixGyro* m_Gyro;
+	
+	
+	
+	
+	
 	//DigitalInput* m_PressureSwitch;
 	
 //	Intake* m_FrontIntake;
@@ -106,7 +117,7 @@ public:
 	//bool ChangeWinchSetpoint(double setpoint);
 	//void WinchHoldVoltage(double setpoint);
 	//void WinchDespring();
-	void driveRobot(double throttle, double turn);
+	//void driveRobot(double throttle, double turn);
 	void setRightPower(double speed);
 	void setLeftPower(double speed);
 	

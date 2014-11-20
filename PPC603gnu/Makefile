@@ -32,7 +32,7 @@ MODE_DIR := NonDebug
 endif
 OBJ_DIR := .
 WS_ROOT_DIR := C:/WindRiver/workspace
-PRJ_ROOT_DIR := $(WS_ROOT_DIR)/2014_Offseason_Hitmonchan
+PRJ_ROOT_DIR := $(WS_ROOT_DIR)/2014osp
 
 
 
@@ -79,145 +79,99 @@ endif
 
 
 #Project Targets
-PROJECT_TARGETS = 2014_Offseason_Hitmonchan/$(MODE_DIR)/2014_Offseason_Hitmonchan.out \
-	 2014_Offseason_Hitmonchan_partialImage/$(MODE_DIR)/2014_Offseason_Hitmonchan_partialImage.o
+PROJECT_TARGETS = 2014osp/$(MODE_DIR)/2014osp.out
 
 
 #Rules
 
-# 2014_Offseason_Hitmonchan
+# 2014osp
 ifeq ($(DEBUG_MODE),1)
-2014_Offseason_Hitmonchan/$(MODE_DIR)/% : DEBUGFLAGS_C-Compiler = -g
-2014_Offseason_Hitmonchan/$(MODE_DIR)/% : DEBUGFLAGS_C++-Compiler = -g
-2014_Offseason_Hitmonchan/$(MODE_DIR)/% : DEBUGFLAGS_Linker = -g
-2014_Offseason_Hitmonchan/$(MODE_DIR)/% : DEBUGFLAGS_Partial-Image-Linker = 
-2014_Offseason_Hitmonchan/$(MODE_DIR)/% : DEBUGFLAGS_Librarian = 
-2014_Offseason_Hitmonchan/$(MODE_DIR)/% : DEBUGFLAGS_Assembler = -g
+2014osp/$(MODE_DIR)/% : DEBUGFLAGS_C-Compiler = -g
+2014osp/$(MODE_DIR)/% : DEBUGFLAGS_C++-Compiler = -g
+2014osp/$(MODE_DIR)/% : DEBUGFLAGS_Linker = -g
+2014osp/$(MODE_DIR)/% : DEBUGFLAGS_Partial-Image-Linker = 
+2014osp/$(MODE_DIR)/% : DEBUGFLAGS_Librarian = 
+2014osp/$(MODE_DIR)/% : DEBUGFLAGS_Assembler = -g
 else
-2014_Offseason_Hitmonchan/$(MODE_DIR)/% : DEBUGFLAGS_C-Compiler = -O2 -fstrength-reduce -fno-builtin
-2014_Offseason_Hitmonchan/$(MODE_DIR)/% : DEBUGFLAGS_C++-Compiler = -O2 -fstrength-reduce -fno-builtin
-2014_Offseason_Hitmonchan/$(MODE_DIR)/% : DEBUGFLAGS_Linker = -O2 -fstrength-reduce -fno-builtin
-2014_Offseason_Hitmonchan/$(MODE_DIR)/% : DEBUGFLAGS_Partial-Image-Linker = 
-2014_Offseason_Hitmonchan/$(MODE_DIR)/% : DEBUGFLAGS_Librarian = 
-2014_Offseason_Hitmonchan/$(MODE_DIR)/% : DEBUGFLAGS_Assembler = -O2 -fstrength-reduce -fno-builtin
+2014osp/$(MODE_DIR)/% : DEBUGFLAGS_C-Compiler = -O2 -fstrength-reduce -fno-builtin
+2014osp/$(MODE_DIR)/% : DEBUGFLAGS_C++-Compiler = -O2 -fstrength-reduce -fno-builtin
+2014osp/$(MODE_DIR)/% : DEBUGFLAGS_Linker = -O2 -fstrength-reduce -fno-builtin
+2014osp/$(MODE_DIR)/% : DEBUGFLAGS_Partial-Image-Linker = 
+2014osp/$(MODE_DIR)/% : DEBUGFLAGS_Librarian = 
+2014osp/$(MODE_DIR)/% : DEBUGFLAGS_Assembler = -O2 -fstrength-reduce -fno-builtin
 endif
-2014_Offseason_Hitmonchan/$(MODE_DIR)/% : IDE_INCLUDES = -I$(WIND_BASE)/target/h -I$(WIND_BASE)/target/h/WPILib -I$(WIND_BASE)/target/h/wrn/coreip 
-2014_Offseason_Hitmonchan/$(MODE_DIR)/% : IDE_LIBRARIES = $(WIND_BASE)/target/lib/WPILib.a 
-2014_Offseason_Hitmonchan/$(MODE_DIR)/% : IDE_DEFINES = 
-2014_Offseason_Hitmonchan/$(MODE_DIR)/% : PROJECT_TYPE = DKM
-2014_Offseason_Hitmonchan/$(MODE_DIR)/% : DEFINES = 
-2014_Offseason_Hitmonchan/$(MODE_DIR)/% : EXPAND_DBG = 0
-2014_Offseason_Hitmonchan/$(MODE_DIR)/% : VX_CPU_FAMILY = ppc
-2014_Offseason_Hitmonchan/$(MODE_DIR)/% : CPU = PPC603
-2014_Offseason_Hitmonchan/$(MODE_DIR)/% : TOOL_FAMILY = gnu
-2014_Offseason_Hitmonchan/$(MODE_DIR)/% : TOOL = gnu
-2014_Offseason_Hitmonchan/$(MODE_DIR)/% : TOOL_PATH = 
-2014_Offseason_Hitmonchan/$(MODE_DIR)/% : CC_ARCH_SPEC = -mcpu=603 -mstrict-align -mno-implicit-fp -mlongcall
-2014_Offseason_Hitmonchan/$(MODE_DIR)/% : LIBPATH = 
-2014_Offseason_Hitmonchan/$(MODE_DIR)/% : LIBS = 
-2014_Offseason_Hitmonchan/$(MODE_DIR)/% : OBJ_DIR := 2014_Offseason_Hitmonchan/$(MODE_DIR)
+2014osp/$(MODE_DIR)/% : IDE_INCLUDES = -I$(WIND_BASE)/target/h -I$(WIND_BASE)/target/h/WPILib -I$(WIND_BASE)/target/h/wrn/coreip 
+2014osp/$(MODE_DIR)/% : IDE_LIBRARIES = $(WIND_BASE)/target/lib/WPILib.a 
+2014osp/$(MODE_DIR)/% : IDE_DEFINES = 
+2014osp/$(MODE_DIR)/% : PROJECT_TYPE = DKM
+2014osp/$(MODE_DIR)/% : DEFINES = 
+2014osp/$(MODE_DIR)/% : EXPAND_DBG = 0
+2014osp/$(MODE_DIR)/% : VX_CPU_FAMILY = ppc
+2014osp/$(MODE_DIR)/% : CPU = PPC603
+2014osp/$(MODE_DIR)/% : TOOL_FAMILY = gnu
+2014osp/$(MODE_DIR)/% : TOOL = gnu
+2014osp/$(MODE_DIR)/% : TOOL_PATH = 
+2014osp/$(MODE_DIR)/% : CC_ARCH_SPEC = -mcpu=603 -mstrict-align -mno-implicit-fp -mlongcall
+2014osp/$(MODE_DIR)/% : LIBPATH = 
+2014osp/$(MODE_DIR)/% : LIBS = 
+2014osp/$(MODE_DIR)/% : OBJ_DIR := 2014osp/$(MODE_DIR)
 
-OBJECTS_2014_Offseason_Hitmonchan = 2014_Offseason_Hitmonchan_partialImage/$(MODE_DIR)/2014_Offseason_Hitmonchan_partialImage.o
-
-2014_Offseason_Hitmonchan/$(MODE_DIR)/2014_Offseason_Hitmonchan.out : $(OBJECTS_2014_Offseason_Hitmonchan)
-	$(TRACE_FLAG)if [ ! -d "`dirname "$@"`" ]; then mkdir -p "`dirname "$@"`"; fi;echo "building $@";rm -f "$@";nmppc $(OBJECTS_2014_Offseason_Hitmonchan) $(IDE_LIBRARIES) | tclsh $(WIND_BASE)/host/resource/hutils/tcl/munch.tcl -c ppc > $(OBJ_DIR)/ctdt.c; $(TOOL_PATH)ccppc $(DEBUGFLAGS_Linker) $(CC_ARCH_SPEC) -fdollars-in-identifiers -Wall $(ADDED_CFLAGS) $(IDE_INCLUDES) $(ADDED_INCLUDES) -DCPU=$(CPU) -DTOOL_FAMILY=$(TOOL_FAMILY) -DTOOL=$(TOOL) -D_WRS_KERNEL   $(DEFINES)  -o $(OBJ_DIR)/ctdt.o -c $(OBJ_DIR)/ctdt.c; $(TOOL_PATH)ccppc -r -nostdlib -Wl,-X -T $(WIND_BASE)/target/h/tool/gnu/ldscripts/link.OUT -o "$@" $(OBJ_DIR)/ctdt.o $(OBJECTS_2014_Offseason_Hitmonchan) $(IDE_LIBRARIES) $(LIBPATH) $(LIBS)  $(ADDED_LIBPATH) $(ADDED_LIBS) && if [ "$(EXPAND_DBG)" = "1" ]; then plink "$@";fi
-
-2014_Offseason_Hitmonchan/$(MODE_DIR)/2014_Offseason_Hitmonchan_compile_file : $(FILE) ;
-
-_clean :: 2014_Offseason_Hitmonchan/$(MODE_DIR)/2014_Offseason_Hitmonchan_clean
-
-2014_Offseason_Hitmonchan/$(MODE_DIR)/2014_Offseason_Hitmonchan_clean : 
-	$(TRACE_FLAG)if [ -d "2014_Offseason_Hitmonchan" ]; then cd "2014_Offseason_Hitmonchan"; rm -rf $(MODE_DIR); fi
-
-
-# 2014_Offseason_Hitmonchan_partialImage
-ifeq ($(DEBUG_MODE),1)
-2014_Offseason_Hitmonchan_partialImage/$(MODE_DIR)/% : DEBUGFLAGS_C-Compiler = -g
-2014_Offseason_Hitmonchan_partialImage/$(MODE_DIR)/% : DEBUGFLAGS_C++-Compiler = -g
-2014_Offseason_Hitmonchan_partialImage/$(MODE_DIR)/% : DEBUGFLAGS_Linker = -g
-2014_Offseason_Hitmonchan_partialImage/$(MODE_DIR)/% : DEBUGFLAGS_Partial-Image-Linker = 
-2014_Offseason_Hitmonchan_partialImage/$(MODE_DIR)/% : DEBUGFLAGS_Librarian = 
-2014_Offseason_Hitmonchan_partialImage/$(MODE_DIR)/% : DEBUGFLAGS_Assembler = -g
-else
-2014_Offseason_Hitmonchan_partialImage/$(MODE_DIR)/% : DEBUGFLAGS_C-Compiler = -O2 -fstrength-reduce -fno-builtin
-2014_Offseason_Hitmonchan_partialImage/$(MODE_DIR)/% : DEBUGFLAGS_C++-Compiler = -O2 -fstrength-reduce -fno-builtin
-2014_Offseason_Hitmonchan_partialImage/$(MODE_DIR)/% : DEBUGFLAGS_Linker = -O2 -fstrength-reduce -fno-builtin
-2014_Offseason_Hitmonchan_partialImage/$(MODE_DIR)/% : DEBUGFLAGS_Partial-Image-Linker = 
-2014_Offseason_Hitmonchan_partialImage/$(MODE_DIR)/% : DEBUGFLAGS_Librarian = 
-2014_Offseason_Hitmonchan_partialImage/$(MODE_DIR)/% : DEBUGFLAGS_Assembler = -O2 -fstrength-reduce -fno-builtin
-endif
-2014_Offseason_Hitmonchan_partialImage/$(MODE_DIR)/% : IDE_INCLUDES = -I$(WIND_BASE)/target/h -I$(WIND_BASE)/target/h/WPILib -I$(WIND_BASE)/target/h/wrn/coreip 
-2014_Offseason_Hitmonchan_partialImage/$(MODE_DIR)/% : IDE_LIBRARIES = $(WIND_BASE)/target/lib/WPILib.a 
-2014_Offseason_Hitmonchan_partialImage/$(MODE_DIR)/% : IDE_DEFINES = 
-2014_Offseason_Hitmonchan_partialImage/$(MODE_DIR)/% : PROJECT_TYPE = DKM
-2014_Offseason_Hitmonchan_partialImage/$(MODE_DIR)/% : DEFINES = 
-2014_Offseason_Hitmonchan_partialImage/$(MODE_DIR)/% : EXPAND_DBG = 0
-2014_Offseason_Hitmonchan_partialImage/$(MODE_DIR)/% : VX_CPU_FAMILY = ppc
-2014_Offseason_Hitmonchan_partialImage/$(MODE_DIR)/% : CPU = PPC603
-2014_Offseason_Hitmonchan_partialImage/$(MODE_DIR)/% : TOOL_FAMILY = gnu
-2014_Offseason_Hitmonchan_partialImage/$(MODE_DIR)/% : TOOL = gnu
-2014_Offseason_Hitmonchan_partialImage/$(MODE_DIR)/% : TOOL_PATH = 
-2014_Offseason_Hitmonchan_partialImage/$(MODE_DIR)/% : CC_ARCH_SPEC = -mcpu=603 -mstrict-align -mno-implicit-fp -mlongcall
-2014_Offseason_Hitmonchan_partialImage/$(MODE_DIR)/% : LIBPATH = 
-2014_Offseason_Hitmonchan_partialImage/$(MODE_DIR)/% : LIBS = 
-2014_Offseason_Hitmonchan_partialImage/$(MODE_DIR)/% : OBJ_DIR := 2014_Offseason_Hitmonchan_partialImage/$(MODE_DIR)
-
-2014_Offseason_Hitmonchan_partialImage/$(MODE_DIR)/Objects/2014_Offseason_Hitmonchan/Controllers/OperatorController.o : $(PRJ_ROOT_DIR)/Controllers/OperatorController.cpp $(FORCE_FILE_BUILD)
+2014osp/$(MODE_DIR)/Objects/2014osp/Controllers/OperatorController.o : $(PRJ_ROOT_DIR)/Controllers/OperatorController.cpp $(FORCE_FILE_BUILD)
 	$(TRACE_FLAG)if [ ! -d "`dirname "$@"`" ]; then mkdir -p "`dirname "$@"`"; fi;echo "building $@"; $(TOOL_PATH)ccppc $(DEBUGFLAGS_C++-Compiler) $(CC_ARCH_SPEC) -ansi -Wall  -MD -MP -mlongcall $(ADDED_C++FLAGS) $(IDE_INCLUDES) $(ADDED_INCLUDES) -DCPU=$(CPU) -DTOOL_FAMILY=$(TOOL_FAMILY) -DTOOL=$(TOOL) -D_WRS_KERNEL   $(DEFINES) -o "$@" -c "$<"
 
 
-2014_Offseason_Hitmonchan_partialImage/$(MODE_DIR)/Objects/2014_Offseason_Hitmonchan/PhoenixBase.o : $(PRJ_ROOT_DIR)/PhoenixBase.cpp $(FORCE_FILE_BUILD)
+2014osp/$(MODE_DIR)/Objects/2014osp/PhoenixBase.o : $(PRJ_ROOT_DIR)/PhoenixBase.cpp $(FORCE_FILE_BUILD)
 	$(TRACE_FLAG)if [ ! -d "`dirname "$@"`" ]; then mkdir -p "`dirname "$@"`"; fi;echo "building $@"; $(TOOL_PATH)ccppc $(DEBUGFLAGS_C++-Compiler) $(CC_ARCH_SPEC) -ansi -Wall  -MD -MP -mlongcall $(ADDED_C++FLAGS) $(IDE_INCLUDES) $(ADDED_INCLUDES) -DCPU=$(CPU) -DTOOL_FAMILY=$(TOOL_FAMILY) -DTOOL=$(TOOL) -D_WRS_KERNEL   $(DEFINES) -o "$@" -c "$<"
 
 
-2014_Offseason_Hitmonchan_partialImage/$(MODE_DIR)/Objects/2014_Offseason_Hitmonchan/PhoenixConstants.o : $(PRJ_ROOT_DIR)/PhoenixConstants.cpp $(FORCE_FILE_BUILD)
+2014osp/$(MODE_DIR)/Objects/2014osp/PhoenixConstants.o : $(PRJ_ROOT_DIR)/PhoenixConstants.cpp $(FORCE_FILE_BUILD)
 	$(TRACE_FLAG)if [ ! -d "`dirname "$@"`" ]; then mkdir -p "`dirname "$@"`"; fi;echo "building $@"; $(TOOL_PATH)ccppc $(DEBUGFLAGS_C++-Compiler) $(CC_ARCH_SPEC) -ansi -Wall  -MD -MP -mlongcall $(ADDED_C++FLAGS) $(IDE_INCLUDES) $(ADDED_INCLUDES) -DCPU=$(CPU) -DTOOL_FAMILY=$(TOOL_FAMILY) -DTOOL=$(TOOL) -D_WRS_KERNEL   $(DEFINES) -o "$@" -c "$<"
 
 
-2014_Offseason_Hitmonchan_partialImage/$(MODE_DIR)/Objects/2014_Offseason_Hitmonchan/PhoenixControlBoard.o : $(PRJ_ROOT_DIR)/PhoenixControlBoard.cpp $(FORCE_FILE_BUILD)
+2014osp/$(MODE_DIR)/Objects/2014osp/PhoenixControlBoard.o : $(PRJ_ROOT_DIR)/PhoenixControlBoard.cpp $(FORCE_FILE_BUILD)
 	$(TRACE_FLAG)if [ ! -d "`dirname "$@"`" ]; then mkdir -p "`dirname "$@"`"; fi;echo "building $@"; $(TOOL_PATH)ccppc $(DEBUGFLAGS_C++-Compiler) $(CC_ARCH_SPEC) -ansi -Wall  -MD -MP -mlongcall $(ADDED_C++FLAGS) $(IDE_INCLUDES) $(ADDED_INCLUDES) -DCPU=$(CPU) -DTOOL_FAMILY=$(TOOL_FAMILY) -DTOOL=$(TOOL) -D_WRS_KERNEL   $(DEFINES) -o "$@" -c "$<"
 
 
-2014_Offseason_Hitmonchan_partialImage/$(MODE_DIR)/Objects/2014_Offseason_Hitmonchan/PhoenixLib/PhoenixGyro.o : $(PRJ_ROOT_DIR)/PhoenixLib/PhoenixGyro.cpp $(FORCE_FILE_BUILD)
+2014osp/$(MODE_DIR)/Objects/2014osp/PhoenixLib/PhoenixGyro.o : $(PRJ_ROOT_DIR)/PhoenixLib/PhoenixGyro.cpp $(FORCE_FILE_BUILD)
 	$(TRACE_FLAG)if [ ! -d "`dirname "$@"`" ]; then mkdir -p "`dirname "$@"`"; fi;echo "building $@"; $(TOOL_PATH)ccppc $(DEBUGFLAGS_C++-Compiler) $(CC_ARCH_SPEC) -ansi -Wall  -MD -MP -mlongcall $(ADDED_C++FLAGS) $(IDE_INCLUDES) $(ADDED_INCLUDES) -DCPU=$(CPU) -DTOOL_FAMILY=$(TOOL_FAMILY) -DTOOL=$(TOOL) -D_WRS_KERNEL   $(DEFINES) -o "$@" -c "$<"
 
 
-2014_Offseason_Hitmonchan_partialImage/$(MODE_DIR)/Objects/2014_Offseason_Hitmonchan/PhoenixLib/PhoenixLexer.o : $(PRJ_ROOT_DIR)/PhoenixLib/PhoenixLexer.cpp $(FORCE_FILE_BUILD)
+2014osp/$(MODE_DIR)/Objects/2014osp/PhoenixLib/PhoenixLexer.o : $(PRJ_ROOT_DIR)/PhoenixLib/PhoenixLexer.cpp $(FORCE_FILE_BUILD)
 	$(TRACE_FLAG)if [ ! -d "`dirname "$@"`" ]; then mkdir -p "`dirname "$@"`"; fi;echo "building $@"; $(TOOL_PATH)ccppc $(DEBUGFLAGS_C++-Compiler) $(CC_ARCH_SPEC) -ansi -Wall  -MD -MP -mlongcall $(ADDED_C++FLAGS) $(IDE_INCLUDES) $(ADDED_INCLUDES) -DCPU=$(CPU) -DTOOL_FAMILY=$(TOOL_FAMILY) -DTOOL=$(TOOL) -D_WRS_KERNEL   $(DEFINES) -o "$@" -c "$<"
 
 
-2014_Offseason_Hitmonchan_partialImage/$(MODE_DIR)/Objects/2014_Offseason_Hitmonchan/PhoenixLib/Utility.o : $(PRJ_ROOT_DIR)/PhoenixLib/Utility.cpp $(FORCE_FILE_BUILD)
+2014osp/$(MODE_DIR)/Objects/2014osp/PhoenixLib/Utility.o : $(PRJ_ROOT_DIR)/PhoenixLib/Utility.cpp $(FORCE_FILE_BUILD)
 	$(TRACE_FLAG)if [ ! -d "`dirname "$@"`" ]; then mkdir -p "`dirname "$@"`"; fi;echo "building $@"; $(TOOL_PATH)ccppc $(DEBUGFLAGS_C++-Compiler) $(CC_ARCH_SPEC) -ansi -Wall  -MD -MP -mlongcall $(ADDED_C++FLAGS) $(IDE_INCLUDES) $(ADDED_INCLUDES) -DCPU=$(CPU) -DTOOL_FAMILY=$(TOOL_FAMILY) -DTOOL=$(TOOL) -D_WRS_KERNEL   $(DEFINES) -o "$@" -c "$<"
 
 
-2014_Offseason_Hitmonchan_partialImage/$(MODE_DIR)/Objects/2014_Offseason_Hitmonchan/PhoenixRobot.o : $(PRJ_ROOT_DIR)/PhoenixRobot.cpp $(FORCE_FILE_BUILD)
+2014osp/$(MODE_DIR)/Objects/2014osp/PhoenixRobot.o : $(PRJ_ROOT_DIR)/PhoenixRobot.cpp $(FORCE_FILE_BUILD)
 	$(TRACE_FLAG)if [ ! -d "`dirname "$@"`" ]; then mkdir -p "`dirname "$@"`"; fi;echo "building $@"; $(TOOL_PATH)ccppc $(DEBUGFLAGS_C++-Compiler) $(CC_ARCH_SPEC) -ansi -Wall  -MD -MP -mlongcall $(ADDED_C++FLAGS) $(IDE_INCLUDES) $(ADDED_INCLUDES) -DCPU=$(CPU) -DTOOL_FAMILY=$(TOOL_FAMILY) -DTOOL=$(TOOL) -D_WRS_KERNEL   $(DEFINES) -o "$@" -c "$<"
 
 
-OBJECTS_2014_Offseason_Hitmonchan_partialImage = 2014_Offseason_Hitmonchan_partialImage/$(MODE_DIR)/Objects/2014_Offseason_Hitmonchan/Controllers/OperatorController.o \
-	 2014_Offseason_Hitmonchan_partialImage/$(MODE_DIR)/Objects/2014_Offseason_Hitmonchan/PhoenixBase.o \
-	 2014_Offseason_Hitmonchan_partialImage/$(MODE_DIR)/Objects/2014_Offseason_Hitmonchan/PhoenixConstants.o \
-	 2014_Offseason_Hitmonchan_partialImage/$(MODE_DIR)/Objects/2014_Offseason_Hitmonchan/PhoenixControlBoard.o \
-	 2014_Offseason_Hitmonchan_partialImage/$(MODE_DIR)/Objects/2014_Offseason_Hitmonchan/PhoenixLib/PhoenixGyro.o \
-	 2014_Offseason_Hitmonchan_partialImage/$(MODE_DIR)/Objects/2014_Offseason_Hitmonchan/PhoenixLib/PhoenixLexer.o \
-	 2014_Offseason_Hitmonchan_partialImage/$(MODE_DIR)/Objects/2014_Offseason_Hitmonchan/PhoenixLib/Utility.o \
-	 2014_Offseason_Hitmonchan_partialImage/$(MODE_DIR)/Objects/2014_Offseason_Hitmonchan/PhoenixRobot.o
+OBJECTS_2014osp = 2014osp/$(MODE_DIR)/Objects/2014osp/Controllers/OperatorController.o \
+	 2014osp/$(MODE_DIR)/Objects/2014osp/PhoenixBase.o \
+	 2014osp/$(MODE_DIR)/Objects/2014osp/PhoenixConstants.o \
+	 2014osp/$(MODE_DIR)/Objects/2014osp/PhoenixControlBoard.o \
+	 2014osp/$(MODE_DIR)/Objects/2014osp/PhoenixLib/PhoenixGyro.o \
+	 2014osp/$(MODE_DIR)/Objects/2014osp/PhoenixLib/PhoenixLexer.o \
+	 2014osp/$(MODE_DIR)/Objects/2014osp/PhoenixLib/Utility.o \
+	 2014osp/$(MODE_DIR)/Objects/2014osp/PhoenixRobot.o
 
-2014_Offseason_Hitmonchan_partialImage/$(MODE_DIR)/2014_Offseason_Hitmonchan_partialImage.o : $(OBJECTS_2014_Offseason_Hitmonchan_partialImage)
-	$(TRACE_FLAG)if [ ! -d "`dirname "$@"`" ]; then mkdir -p "`dirname "$@"`"; fi;echo "building $@"; $(TOOL_PATH)ccppc -r -nostdlib -Wl,-X  -o "$@" $(OBJECTS_2014_Offseason_Hitmonchan_partialImage) $(LIBPATH) $(LIBS) $(ADDED_LIBPATH) $(ADDED_LIBS)  && if [ "$(EXPAND_DBG)" = "1" ]; then plink "$@";fi
+2014osp/$(MODE_DIR)/2014osp.out : $(OBJECTS_2014osp)
+	$(TRACE_FLAG)if [ ! -d "`dirname "$@"`" ]; then mkdir -p "`dirname "$@"`"; fi;echo "building $@";rm -f "$@";nmppc $(OBJECTS_2014osp) $(IDE_LIBRARIES) | tclsh $(WIND_BASE)/host/resource/hutils/tcl/munch.tcl -c ppc > $(OBJ_DIR)/ctdt.c; $(TOOL_PATH)ccppc $(DEBUGFLAGS_Linker) $(CC_ARCH_SPEC) -fdollars-in-identifiers -Wall $(ADDED_CFLAGS) $(IDE_INCLUDES) $(ADDED_INCLUDES) -DCPU=$(CPU) -DTOOL_FAMILY=$(TOOL_FAMILY) -DTOOL=$(TOOL) -D_WRS_KERNEL   $(DEFINES)  -o $(OBJ_DIR)/ctdt.o -c $(OBJ_DIR)/ctdt.c; $(TOOL_PATH)ccppc -r -nostdlib -Wl,-X -T $(WIND_BASE)/target/h/tool/gnu/ldscripts/link.OUT -o "$@" $(OBJ_DIR)/ctdt.o $(OBJECTS_2014osp) $(IDE_LIBRARIES) $(LIBPATH) $(LIBS)  $(ADDED_LIBPATH) $(ADDED_LIBS) && if [ "$(EXPAND_DBG)" = "1" ]; then plink "$@";fi
 
-2014_Offseason_Hitmonchan_partialImage/$(MODE_DIR)/2014_Offseason_Hitmonchan_partialImage_compile_file : $(FILE) ;
+2014osp/$(MODE_DIR)/2014osp_compile_file : $(FILE) ;
 
-_clean :: 2014_Offseason_Hitmonchan_partialImage/$(MODE_DIR)/2014_Offseason_Hitmonchan_partialImage_clean
+_clean :: 2014osp/$(MODE_DIR)/2014osp_clean
 
-2014_Offseason_Hitmonchan_partialImage/$(MODE_DIR)/2014_Offseason_Hitmonchan_partialImage_clean : 
-	$(TRACE_FLAG)if [ -d "2014_Offseason_Hitmonchan_partialImage" ]; then cd "2014_Offseason_Hitmonchan_partialImage"; rm -rf $(MODE_DIR); fi
+2014osp/$(MODE_DIR)/2014osp_clean : 
+	$(TRACE_FLAG)if [ -d "2014osp" ]; then cd "2014osp"; rm -rf $(MODE_DIR); fi
 
 force : 
 
-DEP_FILES := 2014_Offseason_Hitmonchan_partialImage/$(MODE_DIR)/Objects/2014_Offseason_Hitmonchan/Controllers/OperatorController.d 2014_Offseason_Hitmonchan_partialImage/$(MODE_DIR)/Objects/2014_Offseason_Hitmonchan/PhoenixBase.d 2014_Offseason_Hitmonchan_partialImage/$(MODE_DIR)/Objects/2014_Offseason_Hitmonchan/PhoenixConstants.d \
-	 2014_Offseason_Hitmonchan_partialImage/$(MODE_DIR)/Objects/2014_Offseason_Hitmonchan/PhoenixControlBoard.d 2014_Offseason_Hitmonchan_partialImage/$(MODE_DIR)/Objects/2014_Offseason_Hitmonchan/PhoenixLib/PhoenixGyro.d 2014_Offseason_Hitmonchan_partialImage/$(MODE_DIR)/Objects/2014_Offseason_Hitmonchan/PhoenixLib/PhoenixLexer.d \
-	 2014_Offseason_Hitmonchan_partialImage/$(MODE_DIR)/Objects/2014_Offseason_Hitmonchan/PhoenixLib/Utility.d 2014_Offseason_Hitmonchan_partialImage/$(MODE_DIR)/Objects/2014_Offseason_Hitmonchan/PhoenixRobot.d
+DEP_FILES := 2014osp/$(MODE_DIR)/Objects/2014osp/Controllers/OperatorController.d 2014osp/$(MODE_DIR)/Objects/2014osp/PhoenixBase.d 2014osp/$(MODE_DIR)/Objects/2014osp/PhoenixConstants.d \
+	 2014osp/$(MODE_DIR)/Objects/2014osp/PhoenixControlBoard.d 2014osp/$(MODE_DIR)/Objects/2014osp/PhoenixLib/PhoenixGyro.d 2014osp/$(MODE_DIR)/Objects/2014osp/PhoenixLib/PhoenixLexer.d \
+	 2014osp/$(MODE_DIR)/Objects/2014osp/PhoenixLib/Utility.d 2014osp/$(MODE_DIR)/Objects/2014osp/PhoenixRobot.d
 -include $(DEP_FILES)
 
 

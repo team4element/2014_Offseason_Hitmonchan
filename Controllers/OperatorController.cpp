@@ -13,7 +13,7 @@ void OperatorController::handle(PhoenixRobot* bot)
 {
 	if(m_CB->GetDriveButton(2)) //B-button
 	{
-		bot->driveRobot(m_CB->GetDriveThrottle(),m_CB->GetDriveTurn());
+		//bot->driveRobot(m_CB->GetDriveThrottle(),m_CB->GetDriveTurn());
 	}
 	
 	//printf("Controlling...\n");

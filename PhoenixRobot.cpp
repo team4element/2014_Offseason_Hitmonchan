@@ -19,12 +19,23 @@ PhoenixRobot::PhoenixRobot()
 	m_LeftDriveB_ = new Talon(PWM_LEFT_DRIVEB_);
 	m_LeftDriveC_ = new Talon(PWM_LEFT_DRIVEC_);
 	
-	
 	//m_RightDrive = new Talon(PWM_RIGHT_DRIVE);
 	//m_LeftDrive = new Talon(PWM_LEFT_DRIVE);
 	
+	//Set up Compressor
+	//m_Compressor = new Relay(RELAY_COMPRESSOR); //TODO: Enter relay Compressor port
+		
 	//m_Compressor = new Relay(RELAY_COMPRESSOR);
 	//m_PressureSwitch = new DigitalInput(DIGITAL_PRESSURE_SWITCH);
+	
+	//Set up Subsystems
+	
+	
+	//Set up Sensors
+	m_Gyro = new PhoenixLib::PhoenixGyro(GYRO_DRIVE);
+	
+	
+	
 	
 //	m_FrontIntake = new Intake(PWM_FRONT_INTAKE_A, PWM_FRONT_INTAKE_B, SOLENOID_FRONT_INTAKE_A, SOLENOID_FRONT_INTAKE_B);
 //	m_RearIntake = new Intake(PWM_REAR_INTAKE_A, PWM_REAR_INTAKE_B, SOLENOID_REAR_INTAKE_A, SOLENOID_REAR_INTAKE_B);
@@ -338,41 +349,41 @@ void PhoenixRobot::handle()
 //	}
 }
 
-void PhoenixRobot::driveRobot(float throttle, float turn, bool turnButton){
-	
-	float sensitivity;
-	if(quickTurn){
-		sensitivity = 1;
-	} else
-		sensitivity = 0.4;
-	
-	
-	float temp_rightPower = throttle - turn;
-	float temp_leftPower = throttle + turn;
-	
-	//Maintain a high differential at high speeds.
-	float rightPower = temp_rightPower + skim(temp_leftPower);
-	float leftPower = temp_leftPower + skim(temp_rightPower);
-	
-	setRightPower(rightPower);
-	setLeftPower(leftPower);
-	
-	/* 0% throttle, 50% turn
-	 *  right = .5; 
-	 *  left = -.5
-	 * 
-	 */
-}
+//void PhoenixRobot::driveRobot(float throttle, float turn, bool turnButton){
+//	
+//	float sensitivity;
+//	if(quickTurn){
+//		sensitivity = 1;
+//	} else
+//		sensitivity = 0.4;
+//	
+//	
+//	float temp_rightPower = throttle - turn;
+//	float temp_leftPower = throttle + turn;
+//	
+//	//Maintain a high differential at high speeds.
+//	float rightPower = temp_rightPower + skim(temp_leftPower);
+//	float leftPower = temp_leftPower + skim(temp_rightPower);
+//	
+//	setRightPower(rightPower);
+//	setLeftPower(leftPower);
+//	
+//	/* 0% throttle, 50% turn
+//	 *  right = .5; 
+//	 *  left = -.5
+//	 * 
+//	 */
+//}
 
-double PhoenixRobot::skim(float input)
-{
-	double skimGain = .01;
-	if(input > 1.0)
-		return -((v-1.0) * skimGain);
-	else if (input < -1.0)
-		return -((v+1.0) * skimGain);
-	return 0.0;
-}
+//double PhoenixRobot::skim(float input)
+//{
+//	double skimGain = .01;
+//	if(input > 1.0)
+//		return -((v-1.0) * skimGain);
+//	else if (input < -1.0)
+//		return -((v+1.0) * skimGain);
+//	return 0.0;
+//}
 
 void PhoenixRobot::setRightPower(double doubleSpeed)
 {
