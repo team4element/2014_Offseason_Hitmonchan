@@ -151,9 +151,11 @@ void PhoenixRobot::handle()
 		printf("No controller for PhoenixRobot!!\n");
 		return;
 	}
+	//if there is no controller. (ie: operatorcontrol/autocontrol)
+	
 	//printf("Handling...\n");
 	m_Controller->handle(this);
-	
+
 	// Default drive
 //	float tmpLeftMotor = m_LeftDriveValue;
 //	float tmpRightMotor = m_RightDriveValue;
@@ -348,6 +350,35 @@ void PhoenixRobot::handle()
 //		m_Compressor->Set(Relay::kForward);
 //	}
 }
+
+void PhoenixRobot::drive1538Code(float throttle, float turn, bool quickTurn){
+	
+	float sensitivity = 0; //Turning sensitivity
+	float unscaled_turn = 0; //Turning before sensitivity changes
+
+	if(throttle < 0.10 && throttle > -0.10)
+		throttle = 0;
+	if(turn < 0.10 && turn > -0.10 || (throttle == 0 && !quickTurn))
+		turn = 0;
+	
+	if(quickTurn)
+		sensitivity = 1;
+	else
+		sensitivity = 0.4;
+	
+	
+	
+	turn *= sensitivity;
+	turn = -turn;
+	
+	float leftPower = PwmLimit(throttle + turn);
+	float rightPower = PwmLimit(throttle - turn);	
+		
+	setLeftPower(leftPower);
+	setRightPower(rightPower);
+	
+}
+
 
 //void PhoenixRobot::driveRobot(float throttle, float turn, bool turnButton){
 //	

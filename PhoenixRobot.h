@@ -121,6 +121,8 @@ public:
 	void setRightPower(double speed);
 	void setLeftPower(double speed);
 	
+	void drive1538Code(float speed, float turn, bool quickTurn);
+	
 	void DriveSpeedTurn(float speed, float turn, bool quickTurn);
 	void DriveLeftRight(float leftDriveValue, float rightDriveValue);
 	void QuickTurn(float turn);
