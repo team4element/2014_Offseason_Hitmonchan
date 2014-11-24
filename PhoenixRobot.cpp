@@ -354,7 +354,7 @@ void PhoenixRobot::handle()
 void PhoenixRobot::drive1538Code(float throttle, float turn, bool quickTurn){
 	
 	float sensitivity = 0; //Turning sensitivity
-	float unscaled_turn = 0; //Turning before sensitivity changes
+	//float unscaled_turn = 0; //Turning before sensitivity changes
 
 	if(throttle < 0.10 && throttle > -0.10)
 		throttle = 0;
@@ -370,9 +370,8 @@ void PhoenixRobot::drive1538Code(float throttle, float turn, bool quickTurn){
 	
 	turn *= sensitivity;
 	turn = -turn;
-	
-	float leftPower = PwmLimit(throttle + turn);
-	float rightPower = PwmLimit(throttle - turn);	
+	float leftPower = PhoenixLib::LimitMix(throttle + turn);  //:: is the scope.
+	float rightPower = PhoenixLib::LimitMix(throttle - turn);	
 		
 	setLeftPower(leftPower);
 	setRightPower(rightPower);
@@ -416,37 +415,45 @@ void PhoenixRobot::drive1538Code(float throttle, float turn, bool quickTurn){
 //	return 0.0;
 //}
 
-void PhoenixRobot::setRightPower(double doubleSpeed)
+
+void PhoenixRobot::setRightPower(double speed)
 {
 	//doubleSpeed = joy1->GetRawAxis(1);
 	//data validation; -1<x<1
-	if (doubleSpeed < -1)
+	if (speed < -1.0)
 	{
-		doubleSpeed = -1;
+		speed = -1.0;
 	}
-	else if (doubleSpeed > 1)
+	else if (speed > 1.0)
 	{
-		doubleSpeed = 1;
+		speed = 1.0;
 	}
-	//How Do You Set Talons?
-
-	//joy1->GetRawButton(2);
+	
+	m_RightDriveA_->Set(-speed);
+	m_RightDriveB_->Set(speed);
+	m_RightDriveC_->Set(speed);
+	
 }
 
-void PhoenixRobot::setLeftPower(double doubleSpeed)
+
+
+void PhoenixRobot::setLeftPower(double speed)
 {
 	//doubleSpeed = joy1->GetRawAxis(1);
 	//data validation; -1<x<1
-	if (doubleSpeed < -1)
+	if (speed < -1.0)
 	{
-		doubleSpeed = -1;
+		speed = -1.0;
 	}
-	else if (doubleSpeed > 1)
+	else if (speed > 1.0)
 	{
-		doubleSpeed = 1;
+		speed = 1.0;
 	}
-	//How Do You Set Talons?
-	//joy1->GetRawButton(2);
+	
+	m_LeftDriveA_->Set(speed);
+	m_LeftDriveB_->Set(-speed);
+	m_LeftDriveC_->Set(-speed);
+	
 }
 
 //void PhoenixRobot::AutoSettle()
