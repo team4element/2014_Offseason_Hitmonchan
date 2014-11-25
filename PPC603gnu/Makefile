@@ -148,6 +148,14 @@ endif
 	$(TRACE_FLAG)if [ ! -d "`dirname "$@"`" ]; then mkdir -p "`dirname "$@"`"; fi;echo "building $@"; $(TOOL_PATH)ccppc $(DEBUGFLAGS_C++-Compiler) $(CC_ARCH_SPEC) -ansi -Wall  -MD -MP -mlongcall $(ADDED_C++FLAGS) $(IDE_INCLUDES) $(ADDED_INCLUDES) -DCPU=$(CPU) -DTOOL_FAMILY=$(TOOL_FAMILY) -DTOOL=$(TOOL) -D_WRS_KERNEL   $(DEFINES) -o "$@" -c "$<"
 
 
+2014osp/$(MODE_DIR)/Objects/2014osp/Subsystems/Arm.o : $(PRJ_ROOT_DIR)/Subsystems/Arm.cpp $(FORCE_FILE_BUILD)
+	$(TRACE_FLAG)if [ ! -d "`dirname "$@"`" ]; then mkdir -p "`dirname "$@"`"; fi;echo "building $@"; $(TOOL_PATH)ccppc $(DEBUGFLAGS_C++-Compiler) $(CC_ARCH_SPEC) -ansi -Wall  -MD -MP -mlongcall $(ADDED_C++FLAGS) $(IDE_INCLUDES) $(ADDED_INCLUDES) -DCPU=$(CPU) -DTOOL_FAMILY=$(TOOL_FAMILY) -DTOOL=$(TOOL) -D_WRS_KERNEL   $(DEFINES) -o "$@" -c "$<"
+
+
+2014osp/$(MODE_DIR)/Objects/2014osp/Subsystems/Intake.o : $(PRJ_ROOT_DIR)/Subsystems/Intake.cpp $(FORCE_FILE_BUILD)
+	$(TRACE_FLAG)if [ ! -d "`dirname "$@"`" ]; then mkdir -p "`dirname "$@"`"; fi;echo "building $@"; $(TOOL_PATH)ccppc $(DEBUGFLAGS_C++-Compiler) $(CC_ARCH_SPEC) -ansi -Wall  -MD -MP -mlongcall $(ADDED_C++FLAGS) $(IDE_INCLUDES) $(ADDED_INCLUDES) -DCPU=$(CPU) -DTOOL_FAMILY=$(TOOL_FAMILY) -DTOOL=$(TOOL) -D_WRS_KERNEL   $(DEFINES) -o "$@" -c "$<"
+
+
 OBJECTS_2014osp = 2014osp/$(MODE_DIR)/Objects/2014osp/Controllers/OperatorController.o \
 	 2014osp/$(MODE_DIR)/Objects/2014osp/PhoenixBase.o \
 	 2014osp/$(MODE_DIR)/Objects/2014osp/PhoenixConstants.o \
@@ -155,7 +163,9 @@ OBJECTS_2014osp = 2014osp/$(MODE_DIR)/Objects/2014osp/Controllers/OperatorContro
 	 2014osp/$(MODE_DIR)/Objects/2014osp/PhoenixLib/PhoenixGyro.o \
 	 2014osp/$(MODE_DIR)/Objects/2014osp/PhoenixLib/PhoenixLexer.o \
 	 2014osp/$(MODE_DIR)/Objects/2014osp/PhoenixLib/Utility.o \
-	 2014osp/$(MODE_DIR)/Objects/2014osp/PhoenixRobot.o
+	 2014osp/$(MODE_DIR)/Objects/2014osp/PhoenixRobot.o \
+	 2014osp/$(MODE_DIR)/Objects/2014osp/Subsystems/Arm.o \
+	 2014osp/$(MODE_DIR)/Objects/2014osp/Subsystems/Intake.o
 
 2014osp/$(MODE_DIR)/2014osp.out : $(OBJECTS_2014osp)
 	$(TRACE_FLAG)if [ ! -d "`dirname "$@"`" ]; then mkdir -p "`dirname "$@"`"; fi;echo "building $@";rm -f "$@";nmppc $(OBJECTS_2014osp) $(IDE_LIBRARIES) | tclsh $(WIND_BASE)/host/resource/hutils/tcl/munch.tcl -c ppc > $(OBJ_DIR)/ctdt.c; $(TOOL_PATH)ccppc $(DEBUGFLAGS_Linker) $(CC_ARCH_SPEC) -fdollars-in-identifiers -Wall $(ADDED_CFLAGS) $(IDE_INCLUDES) $(ADDED_INCLUDES) -DCPU=$(CPU) -DTOOL_FAMILY=$(TOOL_FAMILY) -DTOOL=$(TOOL) -D_WRS_KERNEL   $(DEFINES)  -o $(OBJ_DIR)/ctdt.o -c $(OBJ_DIR)/ctdt.c; $(TOOL_PATH)ccppc -r -nostdlib -Wl,-X -T $(WIND_BASE)/target/h/tool/gnu/ldscripts/link.OUT -o "$@" $(OBJ_DIR)/ctdt.o $(OBJECTS_2014osp) $(IDE_LIBRARIES) $(LIBPATH) $(LIBS)  $(ADDED_LIBPATH) $(ADDED_LIBS) && if [ "$(EXPAND_DBG)" = "1" ]; then plink "$@";fi
@@ -171,7 +181,8 @@ force :
 
 DEP_FILES := 2014osp/$(MODE_DIR)/Objects/2014osp/Controllers/OperatorController.d 2014osp/$(MODE_DIR)/Objects/2014osp/PhoenixBase.d 2014osp/$(MODE_DIR)/Objects/2014osp/PhoenixConstants.d \
 	 2014osp/$(MODE_DIR)/Objects/2014osp/PhoenixControlBoard.d 2014osp/$(MODE_DIR)/Objects/2014osp/PhoenixLib/PhoenixGyro.d 2014osp/$(MODE_DIR)/Objects/2014osp/PhoenixLib/PhoenixLexer.d \
-	 2014osp/$(MODE_DIR)/Objects/2014osp/PhoenixLib/Utility.d 2014osp/$(MODE_DIR)/Objects/2014osp/PhoenixRobot.d
+	 2014osp/$(MODE_DIR)/Objects/2014osp/PhoenixLib/Utility.d 2014osp/$(MODE_DIR)/Objects/2014osp/PhoenixRobot.d 2014osp/$(MODE_DIR)/Objects/2014osp/Subsystems/Arm.d \
+	 2014osp/$(MODE_DIR)/Objects/2014osp/Subsystems/Intake.d
 -include $(DEP_FILES)
 
 
