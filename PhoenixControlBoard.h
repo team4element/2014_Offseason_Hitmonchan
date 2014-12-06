@@ -22,15 +22,11 @@ class PhoenixControlBoard
 private:	
 	Joystick* m_DriveController;
 	Joystick* m_OperatorController;
-	//Joystick* m_DriveWheel;
-	//Joystick* m_OperatorPanel;
-	
-	//bool m_PreviousAuto;
 public:
 	//----Constructor----
 	PhoenixControlBoard();
 	
-	float GetDriveThrottle();
+	float GetDriveThrottle(); //TODO: Take out?
 	float GetDriveTurn();
 	
 	
